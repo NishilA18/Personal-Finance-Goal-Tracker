@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💰 Finance Goal Tracker</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { color: #2d3748; margin-bottom: 30px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .card { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .card h2 { color: #2d3748; margin-bottom: 20px; font-size: 20px; }
+        input, button { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #e2e8f0; border-radius: 6px; }
+        button { background: #4299e1; color: white; font-weight: bold; cursor: pointer; border: none; }
+        button:hover { background: #3182ce; }
+        .goal-item, .txn-item { border-bottom: 1px solid #e2e8f0; padding: 12px 0; }
+        .goal-item:last-child, .txn-item:last-child { border-bottom: none; }
+        .progress-bar { background: #e2e8f0; border-radius: 20px; height: 8px; margin: 8px 0; }
+        .progress-fill { background: #48bb78; height: 100%; border-radius: 20px; transition: width 0.3s; }
+        .flex { display: flex; justify-content: space-between; align-items: center; }
+        .delete-btn { background: #fc8181; padding: 4px 12px; font-size: 12px; width: auto; }
+        .delete-btn:hover { background: #f56565; }
+        .summary { display: flex; gap: 20px; margin-top: 20px; flex-wrap: wrap; }
+        .stat { background: #ebf8ff; padding: 15px; border-radius: 8px; flex: 1; min-width: 120px; }
+        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💰 Personal Finance Goal Tracker</h1>
+        
+        <div class="grid">
+            <!-- Goals Section -->
+            <div class="card">
+                <h2>🎯 Goals</h2>
+                <div id="goalForm">
+                    <input type="text" id="goalName" placeholder="Goal name (e.g., Vacation)" />
+                    <input type="number" id="goalTarget" placeholder="Target amount ($)" />
+                    <input type="date" id="goalDeadline" />
+                    <button onclick="addGoal()">Add Goal</button>
+                </div>
+                <div id="goalList"></div>
+            </div>
+
+            <!-- Transactions Section -->
+            <div class="card">
+                <h2>💸 Transactions</h2>
+                <div id="txnForm">
+                    <input type="text" id="txnDesc" placeholder="Description (e.g., Salary)" />
+                    <input type="number" id="txnAmount" placeholder="Amount ($)" />
+                    <button onclick="addTransaction()">Add Transaction</button>
+                </div>
+                <div id="txnList"></div>
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="card" style="margin-top: 30px;">
+            <h2>📊 Summary</h2>
+            <div class="summary" id="summaryData">
+                <div class="stat">Total Saved: <strong id="totalSaved">$0</strong></div>
+                <div class="stat">Goals: <strong id="goalCount">0</strong></div>
+                <div class="stat">Days to Next Goal: <strong id="daysLeft">-</strong></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
